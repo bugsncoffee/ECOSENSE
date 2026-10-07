@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSense - Smartphone Environmental Monitoring & Citizen Science</title>
+  <meta name="description" content="A smartphone-based environmental monitoring and citizen-science platform for college environmental studies.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=6">
+  
+  <!-- Chart.js for Dashboard Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+<body>
+
+  <!-- Main Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a class="brand" data-nav-target="home">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <div class="brand-name">
+            EcoSense <span>Campus</span>
+            <span class="brand-badge">Citizen Science</span>
+          </div>
+          <span class="brand-sub">Smartphone Environmental Observational Platform</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="main-nav-links">
+        <li><a class="nav-link active" data-nav-target="home">Home</a></li>
+        <li><a class="nav-link" data-nav-target="sensors">Device Sensors</a></li>
+        <li><a class="nav-link" data-nav-target="record">Start Monitoring</a></li>
+        <li><a class="nav-link" data-nav-target="dashboard">Dashboard</a></li>
+        <li><a class="nav-link" data-nav-target="map">Map</a></li>
+        <li><a class="nav-link" data-nav-target="observations">Observations</a></li>
+        <li><a class="nav-link" data-nav-target="about">About / Limitations</a></li>
+      </ul>
+
+      <div class="nav-cta-group">
+        <button class="btn btn-sm btn-demo btn-load-demo-data" title="Populate sample campus observations">
+          ⚡ Demo Data
+        </button>
+        <button class="btn btn-sm btn-primary" data-nav-target="record">
+          + Record
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content SPA Container -->
+  <main class="main-content">
+
+    <!-- ========================================================
+         PAGE 1: HOME
+         ======================================================== -->
+    <section class="page-section active" id="section-home">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span>🌿</span> Environmental Studies Capstone Project
+          </div>
+          <h1 class="hero-title">
+            EcoSense: <span>Crowdsourced Sensing</span> for Healthy Communities
+          </h1>
+          <p class="hero-subtitle">
+            “Turn Everyday Smartphones into Environmental Observers.”
+          </p>
+          <p class="hero-text">
+            EcoSense is a smartphone-based citizen-science platform demonstrating how ubiquitous mobile hardware—GPS, microphones, cameras, and ambient light sensors—can be combined with human observation to collect localized environmental data across college campuses and urban neighborhoods.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn hero-btn-primary" data-nav-target="record">
+              Start Monitoring &rarr;
+            </button>
+            <button class="btn hero-btn-secondary" data-nav-target="dashboard">
+              📊 View Dashboard
+            </button>
+            <button class="btn hero-btn-secondary" data-nav-target="sensors">
+              📱 Test Device Sensors
+            </button>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="hero-stat-item">
+              <span class="hero-stat-number" id="home-stat-total">10+</span>
+              <span class="hero-stat-label">Campus Observations</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-number">4</span>
+              <span class="hero-stat-label">Smartphone Sensor APIs</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-number">100%</span>
+              <span class="hero-stat-label">Client-Side & Private</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-number">CSV/JSON</span>
+              <span class="hero-stat-label">Academic Open Data</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ========================================================
+           🌱 CITIZEN SCIENCE PARTICIPATION ("I'M IN") CARD
+           ======================================================== -->
+      <div class="participation-section" style="margin-top: 36px; margin-bottom: 36px;">
+        <div class="card participation-card">
+          <div class="participation-card-grid">
+            <div class="participation-left">
+              <div class="participation-pill">
+                <span>🌱</span> Join EcoSense
+              </div>
+              <h2 class="participation-title">
+                Join EcoSense
+              </h2>
+              <p class="participation-subtitle">
+                Join other people participating in local environmental monitoring.
+              </p>
+              <p class="participation-desc">
+                EcoSense is an open citizen-science research prototype for environmental studies. By participating, you contribute to localized environmental observations across Punjab using everyday smartphone sensors.
+              </p>
+            </div>
+
+            <div class="participation-right">
+              <div class="participation-cta-box">
+                <!-- "I'm In" Button -->
+                <button class="btn btn-im-in" id="btn-participate-im-in" aria-label="Join EcoSense Citizen Science">
+                  <span id="btn-im-in-icon" class="btn-im-in-icon">🌱</span>
+                  <span id="btn-im-in-label" class="btn-im-in-label">I’m In</span>
+                </button>
+
+                <!-- Confirmation Status Banner -->
+                <div class="participation-confirmation" id="participation-confirmation-msg" style="display: none;">
+                  <span id="participation-confirmation-icon">🎉</span>
+                  <span id="participation-confirmation-text">You’re in! Welcome to EcoSense Citizen Science.</span>
+                </div>
+
+                <!-- Live Global Participant Counter -->
+                <div class="participation-counter" id="participation-counter-box">
+                  <span class="live-counter-dot"></span>
+                  <span class="counter-label">
+                    <strong id="participant-count-display">—</strong> people are participating
+                  </span>
+                </div>
+
+                <div class="participation-microcopy">
+                  🔒 Anonymous citizen-science count • No personal data collected
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Grid -->
+      <div style="margin-top: 36px;">
+        <div class="section-header">
+          <span class="section-badge">Platform Capabilities</span>
+          <h2 class="section-title">How Smartphones Enable Environmental Monitoring</h2>
+          <p class="section-desc">
+            Traditional environmental monitoring stations cost thousands of dollars and have sparse spatial coverage. Smartphones empower communities to map localized micro-climates, acoustic pollution, and canopy shade.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-green">
+              <span>🎙️</span>
+            </div>
+            <h3 class="feature-title">Acoustic Noise Sampling</h3>
+            <p class="feature-desc">
+              Samples live sound pressure levels (dB A) through the Web Audio API to map quiet study zones vs high-stress acoustic areas.
+            </p>
+            <a class="feature-link" data-nav-target="sensors">Test Microphone &rarr;</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-teal">
+              <span>📍</span>
+            </div>
+            <h3 class="feature-title">GPS Spatial Tagging</h3>
+            <p class="feature-desc">
+              Leverages HTML5 Geolocation to automatically timestamp and geolocate environmental observations with accuracy tolerances.
+            </p>
+            <a class="feature-link" data-nav-target="map">Open Campus Map &rarr;</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-blue">
+              <span>☀️</span>
+            </div>
+            <h3 class="feature-title">Ambient Light & Heat</h3>
+            <p class="feature-desc">
+              Inspects illuminance levels (lux) to assess natural daylighting, urban glare, and shade tree canopy effectiveness.
+            </p>
+            <a class="feature-link" data-nav-target="sensors">Check Light Sensor &rarr;</a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-amber">
+              <span>📊</span>
+            </div>
+            <h3 class="feature-title">Citizen Data Analytics</h3>
+            <p class="feature-desc">
+              Visualizes collected data with interactive charts, local persistence, and CSV export for statistical research.
+            </p>
+            <a class="feature-link" data-nav-target="dashboard">View Analytics &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Metadata Banner -->
+      <div class="college-banner">
+        <div class="college-left">
+          <div class="college-icon">🎓</div>
+          <div class="college-meta">
+            <h4>College Environmental Studies Capstone Project (ENVS 302)</h4>
+            <p>Regional Citizen Science Prototype • State of Punjab, India Environmental Monitoring</p>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-secondary btn-sm" data-nav-target="sensors">
+            Explore Device Sensors &rarr;
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PAGE 2: DEVICE SENSORS
+         ======================================================== -->
+    <section class="page-section" id="section-sensors">
+      <div class="section-header">
+        <span class="section-badge">Hardware Audit</span>
+        <h2 class="section-title">What Can Your Smartphone Actually Access?</h2>
+        <p class="section-desc">
+          Live inspection of your current device's hardware sensors. If an API is unsupported or restricted by browser security policies, EcoSense strictly reports <strong>“Not available”</strong> instead of fabricating fake readings.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <!-- 1. GPS Location Card -->
+        <div class="card sensor-card">
+          <div class="sensor-card-top">
+            <div class="sensor-card-header">
+              <div class="sensor-icon-box">📍</div>
+              <div>
+                <h3>GPS & Geolocation</h3>
+                <p>W3C Geolocation API</p>
+              </div>
+            </div>
+            <span class="sensor-status-badge status-pending" id="gps-status-badge">
+              <span class="status-pulse"></span> Ready to Test
+            </span>
+          </div>
+
+          <div class="sensor-reading-box">
+            <div class="sensor-value-large" id="gps-coords-display" style="font-size: 1.45rem;">
+              Click Acquire GPS
+            </div>
+            <div class="sensor-sub-data" id="gps-accuracy-display">
+              Measures device latitude, longitude, and elevation
+            </div>
+          </div>
+
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 14px;">
+            Allows automatic spatial tagging of field observations. Subject to multi-path reflection errors around concrete campus buildings.
+          </p>
+
+          <div style="display: flex; gap: 8px; margin-top: auto;">
+            <button class="btn btn-sm btn-primary" id="btn-test-gps-page">
+              Acquire GPS Fix
+            </button>
+            <button class="btn btn-sm btn-secondary" data-nav-target="record">
+              Use in Observation Form
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Microphone Acoustic Sensor Card -->
+        <div class="card sensor-card">
+          <div class="sensor-card-top">
+            <div class="sensor-card-header">
+              <div class="sensor-icon-box" style="color: #ea580c; background: #ffedd5;">🎙️</div>
+              <div>
+                <h3>Microphone (Acoustic)</h3>
+                <p>Web Audio API + AnalyserNode</p>
+              </div>
+            </div>
+            <span class="sensor-status-badge status-pending" id="mic-status-badge">
+              Standby
+            </span>
+          </div>
+
+          <div class="sensor-reading-box">
+            <div style="display: flex; align-items: baseline;">
+              <span class="sensor-value-large" id="mic-reading-val">--</span>
+              <span class="sensor-unit">dB(A) SPL (Est.)</span>
+            </div>
+            <div class="vu-meter-bar-container">
+              <div class="vu-meter-fill" id="mic-vu-bar"></div>
+            </div>
+            <canvas class="mic-visualizer-canvas" id="mic-canvas" width="400" height="60"></canvas>
+            <div class="sensor-sub-data" id="mic-reading-meta">
+              Click Start to sample real-time sound pressure level
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: auto;">
+            <button class="btn btn-sm btn-primary" id="btn-start-mic-test">
+              Start Decibel Meter
+            </button>
+            <button class="btn btn-sm btn-secondary" id="btn-stop-mic-test" style="display: none; background: #fee2e2; color: #dc2626; border-color: #fca5a5;">
+              Stop Meter
+            </button>
+            <button class="btn btn-sm btn-secondary" id="btn-use-mic-reading">
+              Transfer to Form &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Ambient Light Sensor Card -->
+        <div class="card sensor-card">
+          <div class="sensor-card-top">
+            <div class="sensor-card-header">
+              <div class="sensor-icon-box" style="color: #ca8a04; background: #fef9c3;">☀️</div>
+              <div>
+                <h3>Ambient Light Sensor</h3>
+                <p>W3C Generic Sensor API</p>
+              </div>
+            </div>
+            <span class="sensor-status-badge status-unavailable" id="light-status-badge">
+              Not Available
+            </span>
+          </div>
+
+          <div class="sensor-reading-box">
+            <div style="display: flex; align-items: baseline;">
+              <span class="sensor-value-large" id="light-reading-val">Not Available</span>
+              <span class="sensor-unit">lux</span>
+            </div>
+            <div class="sensor-sub-data">
+              Standard desktop and mobile browsers restrict direct illuminance API access.
+            </div>
+          </div>
+
+          <div class="sensor-notice-box notice-warning" id="light-status-desc">
+            <strong>Why Not Available?</strong> The W3C <code>AmbientLightSensor</code> specification is disabled by default in Chromium and Safari to prevent side-channel keystroke fingerprinting attacks.
+          </div>
+
+          <div style="margin-top: 12px; font-size: 0.8rem; color: var(--text-secondary);">
+            <strong>Alternative Methodology:</strong> Students can record illuminance manually using calibrated laboratory light meters or smartphone camera exposure estimation.
+          </div>
+        </div>
+
+        <!-- 4. Camera (Optical Sensor) Card -->
+        <div class="card sensor-card">
+          <div class="sensor-card-top">
+            <div class="sensor-card-header">
+              <div class="sensor-icon-box" style="color: #2563eb; background: #dbeafe;">📷</div>
+              <div>
+                <h3>Camera (Optical / Imagery)</h3>
+                <p>MediaDevices.getUserMedia</p>
+              </div>
+            </div>
+            <span class="sensor-status-badge status-pending" id="camera-status-badge">
+              Standby
+            </span>
+          </div>
+
+          <div class="camera-preview-wrapper">
+            <video id="camera-preview-video" class="camera-video" playsinline autoplay muted></video>
+            <div class="camera-placeholder" id="camera-placeholder">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <span>Camera Stream Inactive</span>
+            </div>
+          </div>
+
+          <div class="sensor-sub-data" id="camera-meta-display" style="margin: 8px 0;">
+            Used in citizen science for canopy assessment and litter auditing.
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: auto;">
+            <button class="btn btn-sm btn-primary" id="btn-start-camera-test">
+              Test Camera Stream
+            </button>
+            <button class="btn btn-sm btn-secondary" id="btn-stop-camera-test" style="display: none; background: #fee2e2; color: #dc2626; border-color: #fca5a5;">
+              Stop Stream
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensor Capability Matrix -->
+      <div class="card sensor-matrix-card">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 6px;">
+          Smartphone Sensor Capability & Limitations Matrix
+        </h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          Overview of smartphone environmental measurement fidelity versus dedicated scientific instrumentation.
+        </p>
+
+        <div style="overflow-x: auto;">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Environmental Domain</th>
+                <th>Smartphone Hardware</th>
+                <th>Browser Web API</th>
+                <th>Current Status</th>
+                <th>Smartphone Limitation</th>
+                <th>Scientific Benchmark</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Acoustic Noise</strong></td>
+                <td>MEMS Microphone</td>
+                <td>Web Audio API</td>
+                <td><span class="sensor-status-badge status-active">Available</span></td>
+                <td>Automatic Gain Control (AGC), uncalibrated SPL curve</td>
+                <td>Type 1 Sound Level Meter (&plusmn;0.5 dB)</td>
+              </tr>
+              <tr>
+                <td><strong>Spatial Position</strong></td>
+                <td>GPS / GLONASS chip</td>
+                <td>Geolocation API</td>
+                <td><span class="sensor-status-badge status-active">Available</span></td>
+                <td>Multi-path reflection, &plusmn;3m to 15m drift</td>
+                <td>RTK Differential GPS (&lt; 2 cm)</td>
+              </tr>
+              <tr>
+                <td><strong>Ambient Light</strong></td>
+                <td>Front Photodiode</td>
+                <td>AmbientLightSensor</td>
+                <td><span class="sensor-status-badge status-unavailable">Restricted (W3C Policy)</span></td>
+                <td>Orientation faces user, disabled by browser security</td>
+                <td>Cosine-corrected Photometer</td>
+              </tr>
+              <tr>
+                <td><strong>Visual Survey</strong></td>
+                <td>CMOS Camera</td>
+                <td>MediaDevices API</td>
+                <td><span class="sensor-status-badge status-active">Available</span></td>
+                <td>Lens distortion, variable auto-exposure</td>
+                <td>Calibrated Multispectral Sensor</td>
+              </tr>
+              <tr>
+                <td><strong>Air Temperature</strong></td>
+                <td>Internal Battery Thermistor</td>
+                <td>None (No Ambient API)</td>
+                <td><span class="sensor-status-badge status-unsupported">Manual / External</span></td>
+                <td>Measures device CPU heat, not ambient air</td>
+                <td>Aspirated Stevenson Screen Thermometer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" data-nav-target="record">
+          Start Monitoring &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PAGE 3: START MONITORING (RECORD OBSERVATION)
+         ======================================================== -->
+    <section class="page-section" id="section-record">
+      <div class="section-header">
+        <span class="section-badge">Data Collection Protocol</span>
+        <h2 class="section-title">Record an Environmental Observation</h2>
+        <p class="section-desc">
+          Submit a localized measurement using smartphone hardware sensors or standardized citizen-science manual estimation. Saved directly to your browser's persistent storage.
+        </p>
+      </div>
+
+      <div class="form-container">
+        <!-- Main Form Card -->
+        <div class="card">
+          <form id="record-observation-form">
+            <!-- 1. Location -->
+            <div class="form-group">
+              <label class="form-label" for="form-location-name">
+                <span>Location Name / Field Area <span style="color:var(--danger)">*</span></span>
+                <span class="form-label-hint">City, neighborhood, street, or landmark</span>
+              </label>
+              <div class="input-with-button">
+                <input type="text" id="form-location-name" class="form-control" placeholder="e.g. Ludhiana Focal Point, Amritsar Heritage Walk, or Jalandhar Model Town" required>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-get-current-location">
+                  <span>📍 Use My GPS</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- GPS Coordinates (Lat/Lng) -->
+            <div class="form-group">
+              <div class="grid-2">
+                <div>
+                  <label class="form-label" for="form-lat">Latitude</label>
+                  <input type="number" step="0.00001" id="form-lat" class="form-control" value="31.1471">
+                </div>
+                <div>
+                  <label class="form-label" for="form-lng">Longitude</label>
+                  <input type="number" step="0.00001" id="form-lng" class="form-control" value="75.3412">
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Observation Category -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Observation Category <span style="color:var(--danger)">*</span></span>
+                <span class="form-label-hint">Select environmental metric</span>
+              </label>
+
+              <div class="category-pill-grid">
+                <label>
+                  <input type="radio" name="category" value="noise" class="category-radio" checked>
+                  <span class="category-pill">
+                    <span style="color:#ea580c">🔊</span> Noise Level
+                  </span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="light" class="category-radio">
+                  <span class="category-pill">
+                    <span style="color:#ca8a04">☀️</span> Ambient Light
+                  </span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="temperature" class="category-radio">
+                  <span class="category-pill">
+                    <span style="color:#e11d48">🌡️</span> Temperature
+                  </span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="air_quality" class="category-radio">
+                  <span class="category-pill">
+                    <span style="color:#0284c7">💨</span> Air Quality
+                  </span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="greenery" class="category-radio">
+                  <span class="category-pill">
+                    <span style="color:#16a34a">🌿</span> Greenery
+                  </span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="waste" class="category-radio">
+                  <span class="category-pill">
+                    <span style="color:#9333ea">🗑️</span> Waste/Litter
+                  </span>
+                </label>
+                <label>
+                  <input type="radio" name="category" value="other" class="category-radio">
+                  <span class="category-pill">
+                    <span style="color:#64748b">📍</span> Other
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 3. Measurement Input Container -->
+            <!-- Panel A: Live Smartphone Microphone Measurement (Active when Noise Level is selected) -->
+            <div id="panel-noise-microphone" class="monitor-noise-meter-card">
+              <div class="monitor-meter-header">
+                <div class="monitor-meter-title">
+                  <div class="monitor-meter-title-icon">🎙️</div>
+                  <div>
+                    <h4>Smartphone Microphone Sound-Level Meter</h4>
+                    <p>Continuous acoustic sensing via browser Web Audio API</p>
+                  </div>
+                </div>
+                <span class="sensor-status-badge status-pending" id="monitor-mic-status-badge">
+                  Standby
+                </span>
+              </div>
+
+              <!-- Live Sound Readout Box -->
+              <div class="monitor-live-readout-box">
+                <div class="monitor-readout-primary">
+                  <div class="monitor-numeric-row">
+                    <span class="monitor-numeric-val" id="form-mic-live-db">--</span>
+                    <span class="monitor-numeric-unit">dB (Est.)</span>
+                  </div>
+                  <div class="monitor-qualitative-pill" id="form-mic-qualitative-badge">
+                    <span>🔇</span> <span>Microphone Inactive — Click Start</span>
+                  </div>
+                </div>
+
+                <div class="monitor-readout-stats" id="form-mic-stats">
+                  <div>Min: <strong>-- dB</strong></div>
+                  <div>Avg: <strong>-- dB</strong></div>
+                  <div>Max: <strong>-- dB</strong></div>
+                </div>
+              </div>
+
+              <!-- Live Sound-Level Meter Gauge / VU Bar -->
+              <div class="monitor-gauge-wrapper">
+                <div class="monitor-gauge-track">
+                  <div class="monitor-gauge-fill" id="monitor-gauge-fill"></div>
+                </div>
+                <div class="monitor-gauge-scale">
+                  <span>30 dB (Quiet)</span>
+                  <span>50 dB (Moderate)</span>
+                  <span>70 dB (Elevated)</span>
+                  <span>90 dB (Loud)</span>
+                  <span>110 dB (Max)</span>
+                </div>
+              </div>
+
+              <!-- Real-Time Oscilloscope Waveform -->
+              <canvas class="monitor-osc-canvas" id="monitor-osc-canvas" width="600" height="64"></canvas>
+
+              <!-- Live Controls Bar -->
+              <div class="monitor-mic-actions">
+                <button type="button" class="btn btn-primary" id="btn-monitor-mic-start">
+                  🎙️ Start Microphone
+                </button>
+                <button type="button" class="btn btn-secondary" id="btn-monitor-mic-stop" style="display: none; background: #fee2e2; color: #dc2626; border-color: #fca5a5;">
+                  ⏸️ Stop Microphone
+                </button>
+                <button type="button" class="btn btn-primary" id="btn-record-noise-direct" style="background: linear-gradient(135deg, #059669, #0d9488); margin-left: auto;">
+                  💾 Record Observation
+                </button>
+              </div>
+
+              <!-- Important Indicative Sound-Level Calibration Disclaimer -->
+              <div class="monitor-disclaimer-box">
+                <strong>⚠️ Indicative Sound-Level Estimate (Not Lab-Grade dB/dBA):</strong>
+                This microphone reading is an <em>indicative sound-level estimate</em>, not a laboratory-grade dB or dBA sound pressure level measurement. Browser microphone measurements are heavily device-dependent (varying by smartphone manufacturer, MEMS microphone hardware, frequency response curves, and software Automatic Gain Control) and require laboratory calibration against an IEC 61672-1 Class 1 reference meter for regulatory dBA compliance.
+              </div>
+            </div>
+
+            <!-- Panel B: Camera-Based Ambient Light Measurement (Active when Ambient Light is selected) -->
+            <div id="panel-light-camera" class="monitor-noise-meter-card" style="display: none;">
+              <div class="monitor-meter-header">
+                <div class="monitor-meter-title">
+                  <div class="monitor-meter-title-icon" style="color: #ca8a04; background: #fef9c3;">☀️</div>
+                  <div>
+                    <h4>Camera-Based Ambient Brightness — Indicative</h4>
+                    <p>Optical luminance & illuminance estimation via smartphone camera CMOS sensor</p>
+                  </div>
+                </div>
+                <span class="sensor-status-badge status-pending" id="monitor-light-status-badge">
+                  Standby
+                </span>
+              </div>
+
+              <!-- Live Camera Viewport & Optical Analysis -->
+              <div class="camera-light-viewport-wrapper">
+                <div class="camera-light-preview-box">
+                  <video id="monitor-light-video" class="camera-light-video" playsinline autoplay muted></video>
+                  <div class="camera-light-reticle">
+                    <div class="camera-reticle-crosshair"></div>
+                    <div class="camera-reticle-label">Optical Sampling</div>
+                  </div>
+                  <div class="camera-light-placeholder" id="monitor-light-placeholder">
+                    <span style="font-size: 2rem;">📷</span>
+                    <span>Camera Inactive — Click "Start Camera"</span>
+                  </div>
+                </div>
+
+                <!-- Live Brightness Readout Box -->
+                <div class="monitor-live-readout-box" style="flex: 1;">
+                  <div class="monitor-readout-primary">
+                    <div style="font-size: 0.8rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">
+                      Ambient Brightness
+                    </div>
+                    <div class="monitor-numeric-row">
+                      <span class="monitor-numeric-val" id="form-light-live-lux" style="color: #fbbf24;">--</span>
+                      <span class="monitor-numeric-unit">lux (Est.)</span>
+                    </div>
+                    <div style="font-size: 0.78rem; color: #cbd5e1; margin-top: 2px;">
+                      Camera-based indicative reading
+                    </div>
+                    <div class="monitor-qualitative-pill" id="form-light-qualitative-badge" style="margin-top: 8px;">
+                      <span>☀️</span> <span>Camera Inactive — Click Start</span>
+                    </div>
+                  </div>
+
+                  <div class="monitor-readout-stats" id="form-light-stats">
+                    <div>Min: <strong>-- lux</strong></div>
+                    <div>Avg: <strong>-- lux</strong></div>
+                    <div>Max: <strong>-- lux</strong></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Real-Time Brightness / Luminance Gauge Bar -->
+              <div class="monitor-gauge-wrapper" style="margin-top: 14px;">
+                <div class="monitor-gauge-track">
+                  <div class="monitor-gauge-fill" id="monitor-light-gauge-fill" style="background: linear-gradient(90deg, #1e293b 0%, #f59e0b 35%, #fbbf24 65%, #fef08a 100%);"></div>
+                </div>
+                <div class="monitor-gauge-scale">
+                  <span>0 lux (Night)</span>
+                  <span>100 lux (Dim)</span>
+                  <span>500 lux (Room)</span>
+                  <span>2,500 lux (Overcast)</span>
+                  <span>10,000+ lux (Sunlight)</span>
+                </div>
+              </div>
+
+              <!-- Live Controls Bar -->
+              <div class="monitor-mic-actions">
+                <button type="button" class="btn btn-primary" id="btn-monitor-camera-start" style="background: linear-gradient(135deg, #d97706, #ca8a04);">
+                  📷 Start Camera
+                </button>
+                <button type="button" class="btn btn-secondary" id="btn-monitor-camera-stop" style="display: none; background: #fee2e2; color: #dc2626; border-color: #fca5a5;">
+                  ⏹️ Stop Camera
+                </button>
+                <button type="button" class="btn btn-primary" id="btn-record-light-direct" style="background: linear-gradient(135deg, #059669, #0d9488); margin-left: auto;">
+                  💾 Record Observation
+                </button>
+              </div>
+
+              <!-- Scientific Accuracy Explanation & Calibration Disclaimer -->
+              <div class="monitor-disclaimer-box" style="margin-top: 16px;">
+                <strong>⚠️ Camera-Based Ambient Brightness — Indicative:</strong>
+                This reading is estimated from camera image brightness and is device- and exposure-dependent. It is not a calibrated lux measurement. Smartphone cameras employ automatic exposure (AE), ISO gain, and tone mapping; for certified architectural or botanical research, a cosine-corrected laboratory photometer is required.
+              </div>
+            </div>
+
+            <!-- Panel C: Manual Value & Unit Input (Active for Temperature, Air Quality, Greenery, Waste, Other) -->
+            <div id="panel-manual-measurement" class="form-group" style="display: none;">
+              <div class="grid-2">
+                <div>
+                  <label class="form-label" for="form-value">
+                    <span>Observation Value <span style="color:var(--danger)">*</span></span>
+                  </label>
+                  <input type="text" id="form-value" class="form-control" placeholder="e.g. 450">
+                </div>
+                <div>
+                  <label class="form-label" for="form-unit">
+                    <span>Measurement Unit</span>
+                  </label>
+                  <input type="text" id="form-unit" class="form-control" value="dB (Est.)">
+                </div>
+              </div>
+
+              <div class="sensor-assist-box" id="sensor-assist-container" style="margin-top: 12px;">
+                <div class="sensor-assist-text">
+                  <h5 id="manual-assist-title">Environmental Guideline</h5>
+                  <p id="manual-assist-desc">Enter field observation measurement.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Observation Source -->
+            <div class="form-group">
+              <label class="form-label">
+                <span>Data Source</span>
+                <span class="form-label-hint">How was this observation acquired?</span>
+              </label>
+
+              <div class="source-options-row">
+                <label>
+                  <input type="radio" name="source" value="smartphone_sensor" class="category-radio" checked>
+                  <div class="source-pill">
+                    <i>📱</i>
+                    <span>Microphone / Audio</span>
+                  </div>
+                </label>
+                <label>
+                  <input type="radio" name="source" value="camera" class="category-radio">
+                  <div class="source-pill">
+                    <i>📷</i>
+                    <span>Camera Optical</span>
+                  </div>
+                </label>
+                <label>
+                  <input type="radio" name="source" value="manual" class="category-radio">
+                  <div class="source-pill">
+                    <i>✍️</i>
+                    <span>Manual Citizen Entry</span>
+                  </div>
+                </label>
+                <label>
+                  <input type="radio" name="source" value="external_sensor" class="category-radio">
+                  <div class="source-pill">
+                    <i>🔌</i>
+                    <span>External Sensor</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- 5. Context: Environment & Weather -->
+            <div class="form-group">
+              <div class="grid-2">
+                <div>
+                  <label class="form-label" for="form-environment">Environment Setting</label>
+                  <select id="form-environment" class="form-control">
+                    <option value="outdoor">Outdoor / Open Air</option>
+                    <option value="indoor">Indoor Building</option>
+                    <option value="sheltered">Sheltered / Veranda</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label" for="form-weather">Weather Conditions</label>
+                  <select id="form-weather" class="form-control">
+                    <option value="sunny">Sunny / Clear Sky</option>
+                    <option value="partly_cloudy">Partly Cloudy</option>
+                    <option value="overcast">Overcast</option>
+                    <option value="rainy">Rain / Drizzle</option>
+                    <option value="windy">Windy</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Date/Time -->
+            <div class="form-group">
+              <label class="form-label" for="form-datetime">Date & Time of Observation</label>
+              <input type="datetime-local" id="form-datetime" class="form-control">
+            </div>
+
+            <!-- 7. Notes -->
+            <div class="form-group">
+              <label class="form-label" for="form-notes">
+                <span>Field Notes & Remarks</span>
+                <span class="form-label-hint">Qualitative context or anomalies</span>
+              </label>
+              <textarea id="form-notes" class="form-control" rows="3" placeholder="e.g. Lawn mowing equipment operating 30m away, or high canopy shade mitigating midday heat."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="display: flex; gap: 12px; align-items: center; margin-top: 24px;">
+              <button type="submit" class="btn btn-primary" style="flex: 1;">
+                💾 Save Observation to LocalStorage
+              </button>
+              <button type="reset" class="btn btn-secondary">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sidebar Tips & Protocols -->
+        <aside>
+          <div class="tips-card">
+            <h4><span>💡</span> Citizen Science Protocol</h4>
+            <ul class="tip-list">
+              <li>
+                <span class="tip-bullet">•</span>
+                <div>
+                  <strong>Acoustic Measurements:</strong> Hold your phone at chest height away from your clothing to prevent frictional rustling noise.
+                </div>
+              </li>
+              <li>
+                <span class="tip-bullet">•</span>
+                <div>
+                  <strong>GPS Accuracy:</strong> Wait 5-10 seconds outdoors for satellite triangulation before hitting Save to minimize drift.
+                </div>
+              </li>
+              <li>
+                <span class="tip-bullet">•</span>
+                <div>
+                  <strong>Vegetation & Shade:</strong> Note whether readings were taken directly under tree canopies versus asphalt parking spaces.
+                </div>
+              </li>
+              <li>
+                <span class="tip-bullet">•</span>
+                <div>
+                  <strong>Data Privacy:</strong> All observations remain in your local browser storage and can be reviewed, edited, or deleted anytime.
+                </div>
+              </li>
+            </ul>
+
+            <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
+              <button class="btn btn-secondary btn-sm btn-load-demo-data" style="width: 100%;">
+                ⚡ Populate Campus Demo Data
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PAGE 4: DASHBOARD
+         ======================================================== -->
+    <section class="page-section" id="section-dashboard">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="section-badge">Analytics & Summaries</span>
+          <h2 class="section-title">Environmental Analytics Dashboard</h2>
+          <p class="section-desc">
+            Aggregated metrics calculated dynamically from all saved citizen-science environmental records.
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-sm btn-secondary btn-load-demo-data">
+            ⚡ Refresh Demo Data
+          </button>
+          <button class="btn btn-sm btn-primary" data-nav-target="record">
+            + Log Observation
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards Row -->
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:#dcfce7; color:#15803d;">📋</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-total-obs">--</span>
+            <span class="kpi-label">Total Observations</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:#ccfbf1; color:#0d9488;">🏆</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-top-category" style="font-size: 1.35rem;">--</span>
+            <span class="kpi-label">Top Category</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:#ffedd5; color:#ea580c;">🔊</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-avg-noise">--</span>
+            <span class="kpi-label">Avg Noise Level</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon" style="background:#e0f2fe; color:#0284c7;">📱</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-sensor-ratio">--</span>
+            <span class="kpi-label">Phone Sensor %</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid">
+        <!-- 1. Category Distribution -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Observations by Category</h3>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Proportional Breakdown</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="chart-categories-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- 2. Acoustic Noise Levels by Location -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3 class="chart-title">Campus Acoustic Noise Readings (dB A)</h3>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Sound Pressure by Site</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="chart-noise-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Chart: Data Sources -->
+      <div class="chart-card" style="margin-bottom: 24px;">
+        <div class="chart-header">
+          <h3 class="chart-title">Data Acquisition Method (Sensor vs Manual Citizen Science)</h3>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Source Verification</span>
+        </div>
+        <div class="chart-canvas-wrapper" style="height: 180px;">
+          <canvas id="chart-sources-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Recent Observations Section -->
+      <div>
+        <div class="recent-observations-header">
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 700;">Recent Campus Observations</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Latest logged observations across campus</p>
+          </div>
+          <a class="feature-link" data-nav-target="observations">View All in Table &rarr;</a>
+        </div>
+
+        <div class="recent-cards-list" id="recent-observations-deck">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+
+      <div style="margin-top: 32px; display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" data-nav-target="map">
+          View Campus Map &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PAGE 5: MAP
+         ======================================================== -->
+    <section class="page-section" id="section-map">
+      <!-- 1. Dedicated GPS Location Detection Hub (Option 2 requirements) -->
+      <div class="card gps-location-hub-card" style="margin-bottom: 24px; padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 18px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="width: 50px; height: 50px; border-radius: 12px; background: rgba(5, 150, 105, 0.12); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">
+              🛰️
+            </div>
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 3px;">
+                GPS Location
+              </h3>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+                Use GPS to detect your current location.
+              </p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-primary" id="btn-detect-gps-map" style="padding: 10px 18px; font-weight: 700; box-shadow: 0 4px 12px rgba(5,150,105,0.25);">
+              <span id="btn-detect-gps-icon">📍</span> <span id="btn-detect-gps-text">Start / Detect Location</span>
+            </button>
+            <button class="btn btn-secondary" id="btn-use-gps-for-record" style="display: none; padding: 10px 16px; font-weight: 700;">
+              📝 Record With This Location
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Status Message -->
+        <div id="gps-status-box" style="padding: 10px 14px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600;" id="gps-status-message-wrapper">
+            <span id="gps-status-dot" style="width: 10px; height: 10px; border-radius: 50%; background: #94a3b8; display: inline-block;"></span>
+            <span id="gps-status-text" style="color: #475569;">Ready to detect location. Click "Start / Detect Location" above.</span>
+          </div>
+          <span style="font-size: 0.75rem; color: #94a3b8;" id="gps-status-timestamp">Browser Geolocation API (WGS84)</span>
+        </div>
+
+        <!-- Real Coordinate Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Actual Latitude</span>
+            <div id="gps-live-lat" style="font-size: 1.35rem; font-weight: 800; color: #0f172a; margin: 4px 0;">—</div>
+            <span style="font-size: 0.72rem; color: #94a3b8;">Decimal Degrees (North)</span>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Actual Longitude</span>
+            <div id="gps-live-lng" style="font-size: 1.35rem; font-weight: 800; color: #0f172a; margin: 4px 0;">—</div>
+            <span style="font-size: 0.72rem; color: #94a3b8;">Decimal Degrees (East)</span>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">GPS Accuracy</span>
+            <div id="gps-live-accuracy" style="font-size: 1.35rem; font-weight: 800; color: #059669; margin: 4px 0;">—</div>
+            <span style="font-size: 0.72rem; color: #94a3b8;">Horizontal error radius</span>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Fix Timestamp</span>
+            <div id="gps-live-time" style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin: 6px 0;">—</div>
+            <span style="font-size: 0.72rem; color: #94a3b8;">Local Device Timestamp</span>
+          </div>
+        </div>
+
+        <!-- View Mode Switcher -->
+        <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="font-size: 0.82rem; color: #64748b;">
+            <strong>View Preference:</strong> Switch between the Phagwara/Jalandhar regional map and the pure GPS card view.
+          </div>
+          <div style="display: flex; gap: 6px; background: #e2e8f0; padding: 3px; border-radius: 8px;">
+            <button class="btn btn-sm" id="btn-toggle-view-map" style="border: none; background: #fff; color: #0f172a; font-weight: 700; border-radius: 6px; padding: 5px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              🗺️ Phagwara & Jalandhar Map
+            </button>
+            <button class="btn btn-sm" id="btn-toggle-view-gpsonly" style="border: none; background: transparent; color: #64748b; font-weight: 600; border-radius: 6px; padding: 5px 12px;">
+              📍 GPS Location Card Only
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Phagwara & Jalandhar Regional Map Visualizer (Option 1 requirements) -->
+      <div id="map-visualization-wrapper">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <span class="section-badge">Phagwara – Jalandhar Environmental Corridor • Punjab, India</span>
+            <h2 class="section-title">Phagwara & Jalandhar Regional Map</h2>
+            <p class="section-desc">
+              Geographic environmental observations focused on Phagwara (31.2240° N, 75.7708° E) and Jalandhar (31.3260° N, 75.5762° E), Punjab. Zero external tile requests ensures 100% reliable rendering with no 403 errors.
+            </p>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn btn-sm btn-secondary" id="btn-map-center-phagwara" title="Center on Phagwara, Punjab">
+              🎯 Phagwara
+            </button>
+            <button class="btn btn-sm btn-secondary" id="btn-map-center-jalandhar" title="Center on Jalandhar, Punjab">
+              🏢 Jalandhar
+            </button>
+            <button class="btn btn-sm btn-secondary" id="btn-map-center-user-gps" style="display: none;" title="Center on your detected GPS position">
+              📍 My GPS Fix
+            </button>
+            <button class="btn btn-sm btn-secondary" id="btn-map-fit-bounds" title="Fit all observation markers">
+              🔄 Fit All Markers
+            </button>
+            <button class="btn btn-sm btn-primary" data-nav-target="record">
+              + Record Observation
+            </button>
+          </div>
+        </div>
+
+        <!-- Map Filter Bar -->
+        <div class="map-controls-bar">
+          <div class="map-filter-group">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); margin-right: 4px;">Filter Map:</span>
+            <button class="map-filter-pill active" data-map-cat="all">All Points</button>
+            <button class="map-filter-pill" data-map-cat="noise">🔊 Noise</button>
+            <button class="map-filter-pill" data-map-cat="light">☀️ Ambient Light</button>
+            <button class="map-filter-pill" data-map-cat="temperature">🌡️ Temp</button>
+            <button class="map-filter-pill" data-map-cat="air_quality">💨 Air Quality</button>
+            <button class="map-filter-pill" data-map-cat="greenery">🌿 Greenery</button>
+            <button class="map-filter-pill" data-map-cat="waste">🗑️ Waste</button>
+          </div>
+
+          <div style="font-size: 0.78rem; color: var(--text-muted);" id="map-point-counter">
+            Zero tile requests • 100% Offline Reliable
+          </div>
+        </div>
+
+        <!-- Interactive Vector Map Canvas Container -->
+        <div id="ecosense-map" class="map-container" style="min-height: 560px; position: relative;"></div>
+
+        <!-- Legend Card -->
+        <div class="card" style="margin-top: 16px; padding: 14px 20px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.82rem;">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <span style="font-weight: 700;">Categories:</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="color:#ea580c">●</span> Noise (dB)</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="color:#eab308">●</span> Ambient Light (camera estimate)</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="color:#e11d48">●</span> Temperature (°C)</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="color:#0284c7">●</span> Air Quality (AQI)</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="color:#16a34a">●</span> Greenery (%)</span>
+              <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="color:#9333ea">●</span> Waste Density</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.78rem; flex-wrap: wrap;">
+              <span style="background: #eff6ff; color: #1d4ed8; padding: 2px 8px; border-radius: 6px; font-weight: 700; border: 1px solid #bfdbfe;">🎯 LIVE GPS = Actual Device Fix</span>
+              <span style="background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 6px; font-weight: 700; border: 1px solid #fde68a;">DEMO = Demonstration Data</span>
+              <span style="background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 6px; font-weight: 700; border: 1px solid #a7f3d0;">LIVE = Recorded Observation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" data-nav-target="observations">
+          View Observations Archive &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PAGE 6: OBSERVATIONS (SEARCHABLE TABLE)
+         ======================================================== -->
+    <section class="page-section" id="section-observations">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="section-badge">Open Environmental Dataset</span>
+          <h2 class="section-title">Recorded Observations Archive</h2>
+          <p class="section-desc">
+            Searchable, filterable ledger of all saved environmental records. Edit, delete, or export data for statistical analysis in R, Python, or Excel.
+          </p>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-sm btn-secondary" id="btn-export-csv">
+            📥 Export CSV
+          </button>
+          <button class="btn btn-sm btn-secondary" id="btn-export-json">
+            📄 Export JSON
+          </button>
+          <button class="btn btn-sm btn-outline-danger" id="btn-clear-all-data">
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- Table Toolbar & Filters -->
+      <div class="table-toolbar">
+        <div class="table-filter-group">
+          <!-- Search Input -->
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="table-search-input" class="search-input" placeholder="Search location, value, or notes...">
+          </div>
+
+          <!-- Category Filter -->
+          <select id="table-category-filter" class="form-control" style="width: auto; padding: 8px 12px; font-size: 0.85rem;">
+            <option value="all">All Categories</option>
+            <option value="noise">Noise Level</option>
+            <option value="light">Ambient Light (camera estimate)</option>
+            <option value="temperature">Temperature</option>
+            <option value="air_quality">Air Quality</option>
+            <option value="greenery">Greenery</option>
+            <option value="waste">Waste / Litter</option>
+            <option value="other">Other</option>
+          </select>
+
+          <!-- Source Filter -->
+          <select id="table-source-filter" class="form-control" style="width: auto; padding: 8px 12px; font-size: 0.85rem;">
+            <option value="all">All Sources</option>
+            <option value="smartphone_sensor">Smartphone Sensor (Microphone)</option>
+            <option value="camera">Smartphone Camera (Optical)</option>
+            <option value="manual">Manual Citizen</option>
+            <option value="external_sensor">External Sensor</option>
+          </select>
+
+          <!-- Sort Filter -->
+          <select id="table-sort-filter" class="form-control" style="width: auto; padding: 8px 12px; font-size: 0.85rem;">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="value">Highest Value</option>
+          </select>
+        </div>
+
+        <div style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;" id="table-count-display">
+          Showing 0 observations
+        </div>
+      </div>
+
+      <!-- Observations Table -->
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">#</th>
+              <th>Location & Coordinates</th>
+              <th>Category</th>
+              <th>Recorded Value</th>
+              <th>Source</th>
+              <th>Timestamp</th>
+              <th style="width: 100px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="observations-table-body">
+            <!-- Dynamically populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 24px; display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" data-nav-target="about">
+          About & Limitations &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PAGE 7: ABOUT & SENSOR LIMITATIONS
+         ======================================================== -->
+    <section class="page-section" id="section-about">
+      <div class="section-header">
+        <span class="section-badge">Methodology & Critical Analysis</span>
+        <h2 class="section-title">About EcoSense & Sensor Limitations</h2>
+        <p class="section-desc">
+          Academic context, hardware constraints, and citizen-science methodology for our college Environmental Studies capstone.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <!-- Prototype Notice -->
+          <div class="limitation-callout">
+            <h4 style="font-weight: 700; margin-bottom: 4px;">⚠️ Academic Prototype Notice</h4>
+            <p style="font-size: 0.88rem;">
+              EcoSense is a college student-led educational and citizen-science prototype. It demonstrates participatory environmental data collection but <strong>does not replace calibrated, professional environmental monitoring equipment</strong>.
+            </p>
+          </div>
+
+          <div class="card" style="margin-bottom: 24px;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #0f172a;">
+              Hardware Variances & Smartphone Sensor Realities
+            </h3>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 16px;">
+              Smartphones are consumer communication devices, not calibrated laboratory instruments. Sensor accuracy, frequency response, and software drivers vary drastically between manufacturers (Apple, Samsung, Google) and individual phone models.
+            </p>
+
+            <h4 style="font-size: 1rem; font-weight: 700; color: #064e3b; margin-top: 14px;">1. Microphone & Decibel Accuracy</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Smartphone microphones feature aggressive <strong>Automatic Gain Control (AGC)</strong> and software noise-cancellation DSP tuned for human speech (300 Hz – 3400 Hz). In environmental science, uncalibrated microphones can drift by &plusmn;5 to 12 dB SPL, particularly at low sub-bass and high ultrasonic frequencies.
+            </p>
+
+            <h4 style="font-size: 1rem; font-weight: 700; color: #064e3b; margin-top: 14px;">2. Ambient Light Sensor Inaccessibility</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Most modern browsers (Chrome, Safari) restrict the W3C Generic Sensor API by default to prevent timing attacks and keystroke fingerprinting. Furthermore, smartphone light sensors point toward the user's face rather than upward toward the sky, violating cosine-correction principles.
+            </p>
+
+            <h4 style="font-size: 1rem; font-weight: 700; color: #064e3b; margin-top: 14px;">3. Consumer GPS Drift</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Urban and campus buildings cause satellite signal reflection (multi-path distortion), reducing standard consumer GPS accuracy to &plusmn;5m – 15m. Scientific GIS surveys rely on dual-frequency RTK GPS receivers with centimeter-level precision.
+            </p>
+          </div>
+
+          <!-- Comparison Table -->
+          <div class="card">
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; color: #0f172a;">
+              Citizen Science vs. Regulatory Stations
+            </h3>
+
+            <div style="overflow-x: auto;">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Dimension</th>
+                    <th>EcoSense (Smartphone Citizen Science)</th>
+                    <th>Professional Environmental Station</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Capital Cost</strong></td>
+                    <td>$0 (Leverages student/citizen phones)</td>
+                    <td>$10,000 – $75,000 per monitoring site</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Spatial Density</strong></td>
+                    <td>High (hundreds of campus micro-sites)</td>
+                    <td>Very sparse (1-2 stations per city)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Calibration</strong></td>
+                    <td>Uncalibrated MEMS sensors, relative trends</td>
+                    <td>NIST-traceable, factory certified</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Acoustic Response</strong></td>
+                    <td>Approximate dB(A) via Web Audio API</td>
+                    <td>IEC 61672-1 Class 1 certified sound meter</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Primary Role</strong></td>
+                    <td>Screening, awareness, hotspot detection</td>
+                    <td>Regulatory compliance and policy enforcement</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: Project Context & Team -->
+        <aside>
+          <div class="team-card">
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 8px;">🎓 Project Metadata</h4>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 8px;">
+              <div><strong>Project:</strong> EcoSense Environmental Studies Platform</div>
+              <div><strong>Focus Region:</strong> State of Punjab, India</div>
+              <div><strong>Course:</strong> ENVS 302 Environmental Studies Capstone</div>
+              <div><strong>Topic:</strong> Participatory Environmental Sensing & Citizen Science</div>
+              <div><strong>Data Storage:</strong> HTML5 Web Storage (localStorage)</div>
+              <div><strong>Mapping Engine:</strong> Leaflet.js / OpenStreetMap</div>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">👥 Student Research Team</h4>
+            <div class="team-member">
+              <div class="team-avatar">ES</div>
+              <div>
+                <strong style="font-size: 0.88rem;">Environmental Studies Group</strong>
+                <p style="font-size: 0.78rem; color: var(--text-muted);">Field Data Collection & Analysis</p>
+              </div>
+            </div>
+            <div class="team-member">
+              <div class="team-avatar" style="background:#ccfbf1; color:#0d9488;">CS</div>
+              <div>
+                <strong style="font-size: 0.88rem;">Citizen Science Lab</strong>
+                <p style="font-size: 0.78rem; color: var(--text-muted);">Web Sensor Integration & UI</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tips-card" style="background: #f0fdf4; border-color: #bbf7d0;">
+            <h4 style="color: #166534;">🌱 Citizen Science Value</h4>
+            <p style="font-size: 0.82rem; color: #15803d; line-height: 1.5;">
+              Even with hardware limitations, crowdsourced smartphone data provides powerful preliminary screening, identifies environmental justice noise hotspots, and engages students in active field research.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span>🌿</span> EcoSense Environmental Studies Project
+      </div>
+      <div>
+        <span>Turn Everyday Smartphones into Environmental Observers</span>
+      </div>
+      <div>
+        <span>Built with HTML5, Web Audio, Geolocation & Vector Cartography</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- JavaScript Modules in Dependency Order -->
+  <script src="punjab-geojson.js?v=6"></script>
+  <script src="data.js?v=6"></script>
+  <script src="sensors.js?v=6"></script>
+  <script src="charts.js?v=6"></script>
+  <script src="map.js?v=6"></script>
+  <script src="app.js?v=6"></script>
+</body>
+</html>
